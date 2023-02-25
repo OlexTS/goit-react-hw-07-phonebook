@@ -2,8 +2,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 import * as Yup from 'yup';
 import 'yup-phone';
@@ -35,16 +35,16 @@ const schema = Yup.object().shape({
       "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
       'Please enter correct name'
     ),
-  number: Yup.string().phone('UA').required(),
+  phone: Yup.string().phone('UA').required(),
 });
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const allContacts = useSelector(getContacts);
+  const allContacts = useSelector(selectContacts);
 
   const handleSubmit = (values, { resetForm }) => {
     if (allContacts.some(item => item.name === values.name)) {
@@ -68,8 +68,8 @@ const ContactForm = () => {
           <FormError name="name" />
         </Label>
         <Label>
-          <Text>Number</Text>
-          <Input type="tel" name="number" placeholder="8-000-000-00-00" />
+          <Text>Phone</Text>
+          <Input type="tel" name="phone" placeholder="8-000-000-00-00" />
           <FormError name="number" />
         </Label>
         <SubmitButton type="submit">Add contact</SubmitButton>
