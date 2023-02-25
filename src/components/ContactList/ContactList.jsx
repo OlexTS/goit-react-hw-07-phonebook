@@ -1,10 +1,13 @@
 import ContactItem from 'components/ContactItem';
 import { useSelector } from 'react-redux';
 import { selectFilteredContacts } from 'redux/selectors';
-
+import { Text } from './ContactList.styled';
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
-  console.log(contacts);
+ 
+  if (contacts.length === 0) {
+    return <Text>There are no contacts here</Text>
+  }
   return (
     <ul>
       {contacts.map(contact => (
@@ -12,6 +15,7 @@ const ContactList = () => {
           <ContactItem item={contact} />
         </li>
       ))}
+      
     </ul>
   );
 };

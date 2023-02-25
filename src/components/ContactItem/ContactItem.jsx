@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { deleteContact } from 'redux/operations';
 
 import {
@@ -12,12 +13,17 @@ import {
 const ContactItem = ({ item: { name, phone, id } }) => {
   const dispatch = useDispatch();
 
+  const handleDeleteContacts = () => {
+    dispatch(deleteContact(id))
+    toast.success('The contact is deleted from your book')
+}
+
   return (
     <Item>
       <ContactName>
         {name}:<ContactNumber>{phone}</ContactNumber>
       </ContactName>
-      <DeleteBtn type="button" onClick={() => dispatch(deleteContact(id))}>
+      <DeleteBtn type="button" onClick={handleDeleteContacts}>
         Delete
       </DeleteBtn>
     </Item>

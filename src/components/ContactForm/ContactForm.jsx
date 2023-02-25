@@ -52,7 +52,9 @@ const ContactForm = () => {
       return;
     }
     dispatch(addContact(values));
+    
     resetForm();
+    toast.success('The contact is added to your book')
   };
 
   return (
@@ -70,7 +72,7 @@ const ContactForm = () => {
         <Label>
           <Text>Phone</Text>
           <Input type="tel" name="phone" placeholder="8-000-000-00-00" />
-          <FormError name="number" />
+          <FormError name="phone" />
         </Label>
         <SubmitButton type="submit">Add contact</SubmitButton>
       </FormCont>
