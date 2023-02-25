@@ -28,7 +28,7 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addMatcher(isAnyOf('fulfilled'), (state, action) => {
+      .addMatcher(isAnyOf(...getActions('fulfilled')), (state, action) => {
         state.isLoading = false;
         state.error = null;
       });
