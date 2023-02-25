@@ -52,9 +52,9 @@ const ContactForm = () => {
       return;
     }
     dispatch(addContact(values));
-    
+
     resetForm();
-    toast.success('The contact is added to your book')
+    toast.success('The contact is added to your book');
   };
 
   return (

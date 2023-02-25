@@ -4,9 +4,9 @@ import { selectFilteredContacts } from 'redux/selectors';
 import { Text } from './ContactList.styled';
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
- 
+
   if (contacts.length === 0) {
-    return <Text>There are no contacts here</Text>
+    return <Text>There are no contacts here</Text>;
   }
   return (
     <ul>
@@ -15,7 +15,6 @@ const ContactList = () => {
           <ContactItem item={contact} />
         </li>
       ))}
-      
     </ul>
   );
 };
